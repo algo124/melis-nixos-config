@@ -1,0 +1,256 @@
+# Algo's NixOS Config
+
+{ config, lib, pkgs, ... }:
+
+let
+
+# reaper-wrapped script credit to Man2 of the NixOS Discord.
+# Gets Reaper plugins like spectral-compressor working
+reaper-wrapped = pkgs.symlinkJoin {
+	name = "reaper-wrapped";
+	paths = [ pkgs.reaper ];
+	buildInputs = [ pkgs.makeWrapper ];
+	postBuild = ''
+		wrapProgram $out/bin/reaper \
+		--prefix LD_LIBRARY_PATH : ${pkgs.lib.makeLibraryPath [
+			pkgs.libxcb
+			pkgs.xcbutilwm
+			pkgs.libX11
+			pkgs.libXcursor
+			pkgs.libXrandr
+			pkgs.libGL
+		]}
+	'';
+};
+
+in
+
+{
+imports = [
+	./hardware-configuration.nix
+];
+
+# Use the systemd-boot EFI boot loader.
+boot.loader = {
+	systemd-boot.enable = true;
+	systemd-boot.configurationLimit = 3;
+	efi.canTouchEfiVariables = true;
+	timeout = 10;
+};
+
+system.stateVersion = "25.11"; # Don't touch this. It won't update your system.
+
+networking.hostName = "melis";
+networking.networkmanager.enable = true;
+
+programs.xwayland.enable = true;
+
+# Locale
+i18n.defaultLocale = "en_US.UTF-8";
+i18n.extraLocaleSettings = {
+	LC_ALL = "en_US.UTF-8";
+};
+
+time.timeZone = "America/Los_Angeles";
+
+# Services
+services = {
+	desktopManager.plasma6.enable = true;
+	displayManager.sddm.enable = true;
+	displayManager.sddm.theme = "catppuccin-mocha-rosewater";
+	displayManager.sddm.wayland.enable = true;
+};
+
+services.pipewire = {
+	enable = true;
+	pulse.enable = true;
+	alsa.enable = true;
+	jack.enable = true;
+};
+
+services.syncthing = {
+	enable = true;
+	openDefaultPorts = true;
+    	group = "users";
+   	user = "algo";
+    	dataDir = "/home/algo";
+    	configDir = "/home/algo/.config/syncthing";
+};
+
+services.journald.extraConfig = "SystemMaxUse=100M";
+
+# User
+users.users.algo = {
+	isNormalUser = true;
+	extraGroups = [ "wheel" "audio" "networkmanager" ];
+	packages = with pkgs; [
+		tree
+	];
+	shell = pkgs.fish;
+	useDefaultShell = true;
+};
+
+programs.fish.enable = true;
+programs.steam.enable = true;
+musnix.enable = true;
+nixpkgs.config.allowUnfree = true; # Allows proprietary packages.
+nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+# Hyprland
+programs.hyprland = {
+	enable = true;
+	xwayland.enable = true;
+};
+
+# Thunar
+programs.thunar.enable = true;
+programs.thunar.plugins = with pkgs; [
+	thunar-archive-plugin
+	thunar-volman
+];
+
+# Thunar extensions
+services = {
+	gvfs.enable = true;
+	tumbler.enable = true;
+};
+
+# Thunar to Use Alacritty
+xdg.terminal-exec = {
+	enable = true;
+	settings = {
+		default = [ "alacritty.desktop" ];
+	};
+};
+
+# Neovim
+programs.neovim = {
+	enable = true;
+	defaultEditor = true;
+};
+
+# Environment Variables
+environment.variables = {
+	EDITOR = "nvim";
+	TERMINAL = "alacritty";
+	BROWSER = "librewolf";
+};
+
+# Fonts
+fonts.packages = with pkgs; [ 
+	noto-fonts
+	noto-fonts-cjk-sans
+	noto-fonts-color-emoji
+	liberation_ttf
+	fira-code
+	fira-code-symbols
+];
+
+environment.systemPackages = with pkgs; [
+	# Frequently Used
+	neovim # alias: v
+	bat # cat alt
+	eza # ls alt
+	fastfetch # alias: ff
+	meh # image viewer
+	catppuccinifier-cli
+    	# Basics
+	nano vim
+	brightnessctl
+	playerctl
+	imagemagick
+	wget
+	ripgrep
+	gcc glibc cmake
+	python3
+	openssh
+	git gh # git cli
+	unzip
+	libGL
+	toybox # Unix Command Line Utils
+	ffmpeg
+	dbus
+	dunst
+	xwayland
+	wayland-utils
+	xdg-desktop-portal
+	xdg-desktop-portal-gtk
+	electron
+	wl-clipboard
+	hardinfo2
+	ffmpeg
+	cargo
+	rustc
+	libva-utils
+	vulkan-tools
+	# KDE
+	kdePackages.kcalc
+	kdePackages.kclock
+	kdePackages.sddm-kcm
+	kdePackages.partitionmanager
+	kdePackages.xdg-desktop-portal-kde
+	kdePackages.plasma-pa
+	kdePackages.ktorrent
+	kdePackages.kdenlive
+	# Hyprland
+	hyprpaper
+	hyprpolkitagent
+	hyprshot
+	# Theming
+	(pkgs.catppuccin-sddm.override {
+		flavor = "mocha";
+		accent = "rosewater";
+		disableBackground = true;
+	})
+	# Applications
+	vlc
+	alacritty
+	librewolf # Meta+E
+	zoom-us
+	obs-studio
+	prismlauncher
+	element-desktop
+	fluffychat
+	obsidian # open with command line arg --disable-gpu
+	vesktop # Turn off hardware acceleration
+	bitwarden-desktop
+	libreoffice-qt
+	foliate
+	filezilla
+	shotwell
+	euphonica
+	nicotine-plus
+	# Musicking
+	reaper-wrapped
+	pwvucontrol
+	wireplumber
+	qpwgraph
+	yabridge
+	yabridgectl
+	wineWow64Packages.yabridge # wine-staging 9.21
+	winetricks
+	alsa-lib
+	alsa-oss
+	alsa-utils
+	# Music Plugins
+	# decent-sampler
+	surge-xt
+	plugdata
+	vital
+	airwindows-lv2
+	chow-tape-model
+];
+
+environment.plasma6.excludePackages = with pkgs; [
+	kdePackages.kdepim-runtime
+	kdePackages.kmahjongg
+	kdePackages.kmines
+	kdePackages.konversation
+	kdePackages.kpat
+	kdePackages.ksudoku
+	kdePackages.konqueror
+	kdePackages.discover
+];
+
+}
+
