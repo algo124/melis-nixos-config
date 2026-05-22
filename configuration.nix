@@ -26,9 +26,9 @@ reaper-wrapped = pkgs.symlinkJoin {
 in
 
 {
-imports = [
-	./hardware-configuration.nix
-];
+# imports = [
+#	./hardware-configuration.nix
+# ];
 
 # Use the systemd-boot EFI boot loader.
 boot.loader = {
@@ -153,6 +153,8 @@ environment.systemPackages = with pkgs; [
 	eza # ls alt
 	fastfetch # alias: ff
 	meh # image viewer
+	yazi 
+	ripgrep # use rg
 	catppuccinifier-cli
     	# Basics
 	nano vim
@@ -160,7 +162,6 @@ environment.systemPackages = with pkgs; [
 	playerctl
 	imagemagick
 	wget
-	ripgrep
 	gcc glibc cmake
 	python3
 	openssh
@@ -192,8 +193,10 @@ environment.systemPackages = with pkgs; [
 	kdePackages.plasma-pa
 	kdePackages.ktorrent
 	kdePackages.kdenlive
+	kdePackages.kamoso
 	# Hyprland
 	hyprpaper
+	hyprtoolkit
 	hyprpolkitagent
 	hyprshot
 	# Theming
@@ -233,7 +236,7 @@ environment.systemPackages = with pkgs; [
 	alsa-oss
 	alsa-utils
 	# Music Plugins
-	# decent-sampler
+	decent-sampler
 	surge-xt
 	plugdata
 	vital

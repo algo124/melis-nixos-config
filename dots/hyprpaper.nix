@@ -7,7 +7,7 @@ services.hyprpaper = {
 		splash = false;
 		preload = [ "~/Pictures/Wallpaper/swan.png" ];
 		wallpaper = [{
-			monitor = "HDMI-A-4";
+			monitor = "HDMI-A-1";
 			path = "~/Pictures/Wallpaper/swan.png";
 		}];
 	};

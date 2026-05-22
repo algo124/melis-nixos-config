@@ -34,7 +34,7 @@ wayland.windowManager.hyprland.settings = {
 		"$mod, 3, workspace, 3"
 		"$mod, 4, workspace, 4"
 		# Screenshots
-		", PRINT, exec, hyprshot -m region -o ~/Pictures/Screenshots"
+		", F1, exec, hyprshot -m region -o ~/Pictures/Screenshots"
 	] ++ (
         # workspaces
         # binds $mod + [shift +] {1..9} to [move to] workspace {1..9}
@@ -58,7 +58,7 @@ wayland.windowManager.hyprland.settings = {
 		",XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
 	];
 	# MONITOR
-	monitor = "HDMI-A-4, preferred, auto, 1";
+	monitor = "HDMI-A-1, preferred, auto, 1";
 	windowrule = [
 		"opacity 0.9, match:class thunar"
 		"opacity 0.95, match:class vesktop"

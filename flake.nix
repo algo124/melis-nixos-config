@@ -1,3 +1,5 @@
+# Algo's NixOS flake (core file for all config)
+
 {
 description = "Core NixOS flake for Laika";
 
