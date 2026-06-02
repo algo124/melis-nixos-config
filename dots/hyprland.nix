@@ -58,7 +58,7 @@ wayland.windowManager.hyprland.settings = {
 		",XF86MonBrightnessDown, exec, brightnessctl -e4 -n2 set 5%-"
 	];
 	# MONITOR
-	monitor = "HDMI-A-1, preferred, auto, 1";
+	monitor = ", preferred, auto, 1";
 	windowrule = [
 		"opacity 0.9, match:class thunar"
 		"opacity 0.95, match:class vesktop"

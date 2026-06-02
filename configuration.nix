@@ -57,7 +57,6 @@ time.timeZone = "America/Los_Angeles";
 services = {
 	desktopManager.plasma6.enable = true;
 	displayManager.sddm.enable = true;
-	displayManager.sddm.theme = "catppuccin-mocha-rosewater";
 	displayManager.sddm.wayland.enable = true;
 };
 
@@ -168,6 +167,7 @@ environment.systemPackages = with pkgs; [
 	git gh # git cli
 	unzip
 	libGL
+	ddcutil
 	toybox # Unix Command Line Utils
 	ffmpeg
 	dbus
@@ -201,8 +201,6 @@ environment.systemPackages = with pkgs; [
 	hyprshot
 	# Theming
 	(pkgs.catppuccin-sddm.override {
-		flavor = "mocha";
-		accent = "rosewater";
 		disableBackground = true;
 	})
 	# Applications
@@ -223,6 +221,7 @@ environment.systemPackages = with pkgs; [
 	shotwell
 	euphonica
 	nicotine-plus
+	nwg-look
 	# Musicking
 	reaper-wrapped
 	pwvucontrol

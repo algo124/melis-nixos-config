@@ -11,9 +11,11 @@ programs.fish = {
 		clean = "sudo nix-collect-garbage && nix-store --optimise -vv";
 		dots = "cd /etc/nixos && eza";
 		ff = "fastfetch";
-		reboot = "sudo reboot -f";
+		rb = "sudo reboot -f";
 		rebuild = "sudo nixos-rebuild switch";
+		sd = "shutdown now";
 		show-dots = "sudo nvim -p *.nix dots/*.nix";
+		upgrade = "sudo nix flake update && sudo nixos-rebuild switch";
 	};
 };
 

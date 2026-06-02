@@ -1,13 +1,13 @@
 # Algo's NixOS flake (core file for all config)
 
 {
-description = "Core NixOS flake for Laika";
+description = "Core NixOS flake for Melis";
 
 inputs = {
 	nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+	catppuccin.url = "github:catppuccin/nix";	
 	home-manager = {
 		url = "github:nix-community/home-manager";
-		# Avoids version conflicts between home-manager and nixpkgs.
 		inputs.nixpkgs.follows = "nixpkgs";
 	};
 	noctalia = {
@@ -17,20 +17,33 @@ inputs = {
 	musnix = { url = "github:musnix/musnix"; };
 };
 
-outputs = inputs@{ self, nixpkgs, home-manager, ... }: {
+outputs = inputs@{ self, nixpkgs, catppuccin, home-manager, ... }: {
 	nixosConfigurations.melis = nixpkgs.lib.nixosSystem {
 		specialArgs = { inherit inputs; };
 		modules = [
 			./configuration.nix
 			./hardware-configuration.nix
 			./noctalia.nix
+			catppuccin.nixosModules.catppuccin {
+				catppuccin.enable = true;
+				catppuccin.flavor = "mocha";
+				catppuccin.accent = "pink";
+				catppuccin.gtk.icon.enable = true;
+				catppuccin.gtk.icon.accent = "pink";
+				catppuccin.gtk.icon.flavor = "mocha";
+			}
 			inputs.musnix.nixosModules.musnix
 			home-manager.nixosModules.home-manager {
             			home-manager.useGlobalPkgs = true;
             			home-manager.useUserPackages = true;
 				home-manager.backupFileExtension = "bkp";
 				home-manager.overwriteBackup = true;
-				home-manager.users.algo = ./home.nix;
+				home-manager.users.algo = {
+					imports = [
+						./home.nix
+						catppuccin.homeModules.catppuccin
+					];
+				};
 			}
 		];
 	};
