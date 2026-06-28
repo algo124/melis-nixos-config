@@ -6,11 +6,11 @@ gtk = {
 	gtk4.theme = config.gtk.theme;
 	colorScheme = "dark";
 	theme = {
-		name = "Catppuccin-GTK-Mauve-Dark";
-		package = (pkgs.magnetic-catppuccin-gtk.override {
-			accent = ["mauve"];
+		name = "Catppuccin-GTK-Pink-Dark";
+		package = pkgs.magnetic-catppuccin-gtk.override {
+			accent = ["pink"];
 			shade = "dark";
-		});
+		};
 	};
 	iconTheme = {
 		name = "Papirus";

@@ -9,6 +9,7 @@ programs.fish = {
 	};
 	functions = {
 		clean = "sudo nix-collect-garbage && nix-store --optimise -vv";
+		daw = "pw-jack reaper & disown";
 		dots = "cd /etc/nixos && eza";
 		ff = "fastfetch";
 		rb = "sudo reboot -f";

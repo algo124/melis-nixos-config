@@ -19,6 +19,7 @@ reaper-wrapped = pkgs.symlinkJoin {
 			pkgs.libXcursor
 			pkgs.libXrandr
 			pkgs.libGL
+			pkgs.dxvk # Does this work?
 		]}
 	'';
 };
@@ -26,9 +27,8 @@ reaper-wrapped = pkgs.symlinkJoin {
 in
 
 {
-# imports = [
-#	./hardware-configuration.nix
-# ];
+
+nixpkgs.config.permittedInsecurePackages = ["electron-39.8.10"];
 
 # Use the systemd-boot EFI boot loader.
 boot.loader = {
@@ -81,10 +81,8 @@ services.journald.extraConfig = "SystemMaxUse=100M";
 # User
 users.users.algo = {
 	isNormalUser = true;
-	extraGroups = [ "wheel" "audio" "networkmanager" ];
-	packages = with pkgs; [
-		tree
-	];
+	extraGroups = [ "wheel" "audio" "networkmanager" "i2c" ];
+	packages = with pkgs; [ tree ];
 	shell = pkgs.fish;
 	useDefaultShell = true;
 };
@@ -136,7 +134,8 @@ environment.variables = {
 };
 
 # Fonts
-fonts.packages = with pkgs; [ 
+fonts.packages = with pkgs; [
+	nerd-fonts.jetbrains-mono
 	noto-fonts
 	noto-fonts-cjk-sans
 	noto-fonts-color-emoji
@@ -152,7 +151,6 @@ environment.systemPackages = with pkgs; [
 	eza # ls alt
 	fastfetch # alias: ff
 	meh # image viewer
-	yazi 
 	ripgrep # use rg
 	catppuccinifier-cli
     	# Basics
@@ -166,8 +164,7 @@ environment.systemPackages = with pkgs; [
 	openssh
 	git gh # git cli
 	unzip
-	libGL
-	ddcutil
+	ddcutil ddcui
 	toybox # Unix Command Line Utils
 	ffmpeg
 	dbus
@@ -176,14 +173,9 @@ environment.systemPackages = with pkgs; [
 	wayland-utils
 	xdg-desktop-portal
 	xdg-desktop-portal-gtk
-	electron
 	wl-clipboard
 	hardinfo2
 	ffmpeg
-	cargo
-	rustc
-	libva-utils
-	vulkan-tools
 	# KDE
 	kdePackages.kcalc
 	kdePackages.kclock
@@ -225,6 +217,7 @@ environment.systemPackages = with pkgs; [
 	# Musicking
 	reaper-wrapped
 	pwvucontrol
+	pipewire.jack
 	wireplumber
 	qpwgraph
 	yabridge

@@ -11,7 +11,7 @@ inputs = {
 		inputs.nixpkgs.follows = "nixpkgs";
 	};
 	noctalia = {
-      		url = "github:noctalia-dev/noctalia-shell";
+      		url = "github:noctalia-dev/noctalia/legacy-v4"; # CHANGE ONCE V5 HITS REPOS
       		inputs.nixpkgs.follows = "nixpkgs";
     	};
 	musnix = { url = "github:musnix/musnix"; };
@@ -26,6 +26,7 @@ outputs = inputs@{ self, nixpkgs, catppuccin, home-manager, ... }: {
 			./noctalia.nix
 			catppuccin.nixosModules.catppuccin {
 				catppuccin.enable = true;
+				catppuccin.autoEnable = true;
 				catppuccin.flavor = "mocha";
 				catppuccin.accent = "pink";
 				catppuccin.gtk.icon.enable = true;

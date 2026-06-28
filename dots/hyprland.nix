@@ -16,9 +16,9 @@ wayland.windowManager.hyprland.settings = {
 		"$mod, Q, exec, element-desktop"
 		"$mod, W, exec, thunar"
 		"$mod, E, exec, librewolf"
-		"$mod, R, exec, $ipc launcher toggle"
+		"$mod, R, exec, pw-jack reaper"
 		"$mod, T, exec, alacritty"
-		# mod y goes here
+		"$mod, Y, exec, $ipc launcher toggle"
 		"$mod, U, exec, euphonica"
 		"$mod, O, exec, obsidian"
 		", F9, exec, grimblast copy area"
