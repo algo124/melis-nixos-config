@@ -174,6 +174,7 @@ environment.systemPackages = with pkgs; [
 	xdg-desktop-portal
 	xdg-desktop-portal-gtk
 	wl-clipboard
+	yt-dlp
 	hardinfo2
 	ffmpeg
 	# KDE
@@ -234,6 +235,7 @@ environment.systemPackages = with pkgs; [
 	vital
 	airwindows-lv2
 	chow-tape-model
+	cardinal
 ];
 
 environment.plasma6.excludePackages = with pkgs; [
