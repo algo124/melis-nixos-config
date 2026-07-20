@@ -6,7 +6,6 @@ home.username = "algo";
 home.homeDirectory = "/home/algo";
 
 xdg.enable = true;
-wayland.windowManager.hyprland.systemd.enable = false;
 
 imports = [
 	./dots/alacritty.nix
@@ -14,8 +13,7 @@ imports = [
 	./dots/fish.nix
 	./dots/git.nix
 	# ./dots/gtk.nix # possibly remove
-	# ./dots/hyprland.nix
-	# ./dots/hyprpaper.nix
+	./dots/hyprland.nix
 	./dots/librewolf.nix
 	./dots/mpd.nix
 	./dots/mpdscribble.nix

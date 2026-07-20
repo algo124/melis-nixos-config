@@ -1,13 +1,13 @@
-<D-t># Hjem (Home Manager Alternative) Config
+# Hjem (Home Manager Alternative) Config
 # I use this to configure Hyprland in lua more easily.
 # This file is called from flake.nix
 {
-
+hjem.clobberByDefault = true;
 hjem.users.algo = {
 	directory = "/home/algo";
 	files = {
 		".config/hypr/hyprland.lua".source = ./dots/hyprland.lua;
-		# ".config/hypr/hyprpaper.lua".source = ./hyprpaper.lua; # RENABLE THIS once above is working
+		".config/hypr/hyprpaper.conf".source = ./dots/hyprpaper.lua;
 	};
 };
 }

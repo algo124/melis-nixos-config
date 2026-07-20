@@ -40,7 +40,7 @@ local fileManager = "thunar"
 -- See https://wiki.hypr.land/Configuring/Basics/Autostart/
 
 hl.on("hyprland.start", function () 
-	-- hl.exec_cmd("hyprpaper")
+	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("noctalia-shell --no-duplicate")
 end)
 
@@ -249,19 +249,19 @@ hl.device({
 local mainMod = "SUPER"
 
 -- My Binds
-h1.bind(mainMod .. " + Q", hl.dsp.exec_cmd("element-desktop"));
-h1.bind(mainMod .. " + W", hl.dsp.exec_cmd(fileManager));
-h1.bind(mainMod .. " + E", hl.dsp.exec_cmd("librewolf"));
-h1.bind(mainMod .. " + R", hl.dsp.exec_cmd("pw-jack reaper"));
-h1.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal));
-h1.bind(mainMod .. " + Y", hl.dsp.exec_cmd("noctalia-shell call launcher launcher toggle"));
-h1.bind(mainMod .. " + U", hl.dsp.exec_cmd("euphonica"));
--- h1.bind(mainMod .. " + I", hl.dsp.exec_cmd(terminal)); -- UNASSIGNED
-h1.bind(mainMod .. " + O", hl.dsp.exec_cmd("obsidian"));
-h1.bind(mainMod .. " + P", hl.dsp.exec_cmd("vesktop"));
+hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("element-desktop"))
+hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(fileManager))
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("librewolf"))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("pw-jack reaper"))
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
+hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("noctalia-shell call launcher launcher toggle"))
+hl.bind(mainMod .. " + U", hl.dsp.exec_cmd("euphonica"))
+-- hl.bind(mainMod .. " + I", hl.dsp.exec_cmd(terminal)) -- UNASSIGNED
+hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("obsidian"))
+hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("vesktop"))
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
-local closeWindowBind = hl.bind(mainMod .. " + C", hl.dsp.window.close())
+local closeWindowBind = hl.bind(mainMod .. " + K", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))

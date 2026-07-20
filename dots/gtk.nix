@@ -6,10 +6,10 @@ gtk = {
 	# gtk4.theme = config.gtk.theme;
 	colorScheme = "dark";
 	# theme = {
-		# name = "Catppuccin-GTK-Pink-Dark";
-		# package = pkgs.magnetic-catppuccin-gtk.override {
-			# accent = ["pink"];
-			# shade = "dark";
+	# 	name = "Catppuccin-GTK-Pink-Dark";
+	# 	package = pkgs.magnetic-catppuccin-gtk.override {
+	# 		accent = ["pink"];
+	# 		shade = "dark";
 	# 	};
 	# };
 	iconTheme = {
