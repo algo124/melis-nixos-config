@@ -1,6 +1,6 @@
 # Algo's NixOS Config
 
-{ config, lib, pkgs, ... }:
+{ config, inputs, lib, pkgs, ... }:
 
 let
 
@@ -19,7 +19,6 @@ reaper-wrapped = pkgs.symlinkJoin {
 			pkgs.libXcursor
 			pkgs.libXrandr
 			pkgs.libGL
-			pkgs.dxvk # Does this work?
 		]}
 	'';
 };
@@ -95,8 +94,10 @@ nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 # Hyprland
 programs.hyprland = {
-	enable = true;
-	xwayland.enable = true;
+ 	enable = true;
+	package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+	portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+ 	xwayland.enable = true;
 };
 
 # Thunar
@@ -150,7 +151,7 @@ environment.systemPackages = with pkgs; [
 	bat # cat alt
 	eza # ls alt
 	fastfetch # alias: ff
-	meh # image viewer
+	# meh # image viewer
 	ripgrep # use rg
 	catppuccinifier-cli
     	# Basics

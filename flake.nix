@@ -5,11 +5,16 @@ description = "Core NixOS flake for Melis";
 
 inputs = {
 	nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-	catppuccin.url = "github:catppuccin/nix";	
+	catppuccin.url = "github:catppuccin/nix";
+	hjem = {
+      		url = "github:feel-co/hjem";
+      		inputs.nixpkgs.follows = "nixpkgs";
+    	};
 	home-manager = {
 		url = "github:nix-community/home-manager";
 		inputs.nixpkgs.follows = "nixpkgs";
 	};
+	hyprland.url = "github:hyprwm/Hyprland";
 	noctalia = {
       		url = "github:noctalia-dev/noctalia/legacy-v4"; # CHANGE ONCE V5 HITS REPOS
       		inputs.nixpkgs.follows = "nixpkgs";
@@ -25,8 +30,8 @@ outputs = inputs@{ self, nixpkgs, catppuccin, home-manager, ... }: {
 			./hardware-configuration.nix
 			./noctalia.nix
 			catppuccin.nixosModules.catppuccin {
-				catppuccin.enable = true;
 				catppuccin.autoEnable = true;
+				catppuccin.enable = true;
 				catppuccin.flavor = "mocha";
 				catppuccin.accent = "pink";
 				catppuccin.gtk.icon.enable = true;
@@ -34,6 +39,8 @@ outputs = inputs@{ self, nixpkgs, catppuccin, home-manager, ... }: {
 				catppuccin.gtk.icon.flavor = "mocha";
 			}
 			inputs.musnix.nixosModules.musnix
+			inputs.hjem.nixosModules.default
+			./hjem.nix
 			home-manager.nixosModules.home-manager {
             			home-manager.useGlobalPkgs = true;
             			home-manager.useUserPackages = true;
@@ -42,7 +49,15 @@ outputs = inputs@{ self, nixpkgs, catppuccin, home-manager, ... }: {
 				home-manager.users.algo = {
 					imports = [
 						./home.nix
-						catppuccin.homeModules.catppuccin
+						catppuccin.homeModules.catppuccin {
+							catppuccin.autoEnable = true;
+							catppuccin.enable = true;
+							catppuccin.flavor = "mocha";
+							catppuccin.accent = "pink";
+							catppuccin.gtk.icon.enable = true;
+							catppuccin.gtk.icon.accent = "pink";
+							catppuccin.gtk.icon.flavor = "mocha";
+						}
 					];
 				};
 			}

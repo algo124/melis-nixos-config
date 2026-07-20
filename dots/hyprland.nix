@@ -1,9 +1,10 @@
 # Hyprland (Tiling Window Manager) Configuration
-{
-
+{ lib, ...}: {
 wayland.windowManager.hyprland.enable = true; # Delete if not needed
+wayland.windowManager.hyprland.configType = "hyprlang"; # CHANGE TO LUA
 home.sessionVariables.NIXOS_OZONE_WL = "1";
 home.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
+
 wayland.windowManager.hyprland.settings = {
 	exec-once = [
 		"hyprpaper"
@@ -22,7 +23,6 @@ wayland.windowManager.hyprland.settings = {
 		"$mod, U, exec, euphonica"
 		"$mod, O, exec, obsidian"
 		"$mod, P, exec, vesktop"
-		", F9, exec, grimblast copy area"
 		"$mod, K, killactive"
 		"$mod, M, exec, command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"
 		"$mod, V, togglefloating"

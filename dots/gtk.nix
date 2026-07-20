@@ -3,15 +3,15 @@
 
 gtk = {
 	enable = true;
-	gtk4.theme = config.gtk.theme;
+	# gtk4.theme = config.gtk.theme;
 	colorScheme = "dark";
-	theme = {
-		name = "Catppuccin-GTK-Pink-Dark";
-		package = pkgs.magnetic-catppuccin-gtk.override {
-			accent = ["pink"];
-			shade = "dark";
-		};
-	};
+	# theme = {
+		# name = "Catppuccin-GTK-Pink-Dark";
+		# package = pkgs.magnetic-catppuccin-gtk.override {
+			# accent = ["pink"];
+			# shade = "dark";
+	# 	};
+	# };
 	iconTheme = {
 		name = "Papirus";
 		package = pkgs.catppuccin-papirus-folders.override {
