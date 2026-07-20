@@ -199,7 +199,7 @@ environment.systemPackages = with pkgs; [
 	})
 	# Applications
 	vlc
-	alacritty
+	alacritty kitty # alacritty preference
 	librewolf # Meta+E
 	zoom-us
 	obs-studio
