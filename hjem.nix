@@ -10,11 +10,4 @@ hjem.users.algo = {
 		# ".config/hypr/hyprpaper.lua".source = ./hyprpaper.lua; # RENABLE THIS once above is working
 	};
 };
-
-hjemSettings = {
-	# fuzzel.enable = true; # What is fuzzel?
-	hyprland.enable = true;
-	# Should Noctalia be here too?
-};
-
 }
