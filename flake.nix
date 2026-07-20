@@ -29,6 +29,8 @@ outputs = inputs@{ self, nixpkgs, catppuccin, home-manager, ... }: {
 			./configuration.nix
 			./hardware-configuration.nix
 			./noctalia.nix
+			inputs.hjem.nixosModules.default
+			./hjem.nix
 			catppuccin.nixosModules.catppuccin {
 				catppuccin.autoEnable = true;
 				catppuccin.enable = true;
@@ -39,8 +41,6 @@ outputs = inputs@{ self, nixpkgs, catppuccin, home-manager, ... }: {
 				catppuccin.gtk.icon.flavor = "mocha";
 			}
 			inputs.musnix.nixosModules.musnix
-			inputs.hjem.nixosModules.default
-			./hjem.nix
 			home-manager.nixosModules.home-manager {
             			home-manager.useGlobalPkgs = true;
             			home-manager.useUserPackages = true;

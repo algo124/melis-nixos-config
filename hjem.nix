@@ -6,7 +6,7 @@
 hjem.users.algo = {
 	directory = "/home/algo";
 	files = {
-		".config/hypr/hyprland".source = ./dots/hyprland.lua;
+		".config/hypr/hyprland.lua".source = ./dots/hyprland.lua;
 		# ".config/hypr/hyprpaper.lua".source = ./hyprpaper.lua; # RENABLE THIS once above is working
 	};
 };
