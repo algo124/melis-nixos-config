@@ -10,6 +10,7 @@ xdg.enable = true;
 imports = [
 	./dots/alacritty.nix
 	./dots/cliphist.nix
+	./dots/fastfetch.nix
 	./dots/fish.nix
 	./dots/git.nix
 	./dots/gtk.nix # possibly remove
