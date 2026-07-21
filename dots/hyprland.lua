@@ -335,7 +335,31 @@ hl.window_rule({
 hl.window_rule({
     name  = "move-hyprland-run",
     match = { class = "hyprland-run" },
-
     move  = "20 monitor_h-120",
     float = true,
+})
+
+hl.window_rule({
+	match = { class = "thunar" },
+	opacity = "0.9",
+})
+
+hl.window_rule({
+	match = { class = "vesktop" },
+	opacity = "0.9",
+})
+
+hl.window_rule({
+	match = { class = "element-desktop" },
+	opacity = "0.9",
+})
+
+hl.window_rule({
+	match = { class = "REAPER" },
+	opacity = "0.95",
+})
+
+hl.window_rule({
+	match = { class = "yabridge-host.exe" },
+	no_max_size = true;
 })
