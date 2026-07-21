@@ -105,10 +105,11 @@ programs.thunar.plugins = with pkgs; [
 	thunar-volman
 ];
 
-# Thunar extensions
+# File manager extensions
 services = {
 	gvfs.enable = true;
 	tumbler.enable = true;
+	udisks2.enable = true;
 };
 
 # Thunar to Use Alacritty
@@ -148,7 +149,8 @@ environment.systemPackages = with pkgs; [
 	neovim # alias: v
 	bat # cat alt
 	eza # ls alt
-	fastfetch # alias: ff
+	fastfetch # backend for hf
+	hyfetch # alias: hf
 	# meh # image viewer
 	ripgrep # use rg
 	catppuccinifier-cli
@@ -169,6 +171,7 @@ environment.systemPackages = with pkgs; [
 	dbus
 	dunst
 	xwayland
+	xsettingsd
 	wayland-utils
 	xdg-desktop-portal
 	xdg-desktop-portal-gtk
@@ -176,6 +179,7 @@ environment.systemPackages = with pkgs; [
 	yt-dlp
 	hardinfo2
 	ffmpeg
+	sassc
 	# KDE
 	kdePackages.kcalc
 	kdePackages.kclock
@@ -197,6 +201,7 @@ environment.systemPackages = with pkgs; [
 	})
 	# Applications
 	vlc
+	nautilus
 	alacritty # alacritty preference
 	librewolf # Meta+E
 	zoom-us

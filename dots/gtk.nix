@@ -3,17 +3,9 @@
 
 gtk = {
 	enable = true;
-	# gtk4.theme = config.gtk.theme;
 	colorScheme = "dark";
-	# theme = {
-	# 	name = "Catppuccin-GTK-Pink-Dark";
-	# 	package = pkgs.magnetic-catppuccin-gtk.override {
-	# 		accent = ["pink"];
-	# 		shade = "dark";
-	# 	};
-	# };
 	iconTheme = {
-		name = "Papirus";
+		name = "Papirus-Dark";
 		package = pkgs.catppuccin-papirus-folders.override {
    			flavor = "mocha";
     			accent = "pink";

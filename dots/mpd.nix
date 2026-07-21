@@ -3,7 +3,7 @@
 
 services.mpd = {
 	enable = true;
-	musicDirectory = "~/Music";
+	musicDirectory = "/mnt/media/Music";
 	extraConfig = ''
 		bind_to_address "localhost"
 		port "6600"

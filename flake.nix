@@ -36,9 +36,6 @@ outputs = inputs@{ self, nixpkgs, catppuccin, home-manager, ... }: {
 				catppuccin.enable = true;
 				catppuccin.flavor = "mocha";
 				catppuccin.accent = "pink";
-				catppuccin.gtk.icon.enable = true;
-				catppuccin.gtk.icon.accent = "pink";
-				catppuccin.gtk.icon.flavor = "mocha";
 			}
 			inputs.musnix.nixosModules.musnix
 			home-manager.nixosModules.home-manager {
@@ -47,18 +44,7 @@ outputs = inputs@{ self, nixpkgs, catppuccin, home-manager, ... }: {
 				home-manager.backupFileExtension = "bkp";
 				home-manager.overwriteBackup = true;
 				home-manager.users.algo = {
-					imports = [
-						./home.nix
-						catppuccin.homeModules.catppuccin {
-							catppuccin.autoEnable = true;
-							catppuccin.enable = true;
-							catppuccin.flavor = "mocha";
-							catppuccin.accent = "pink";
-							catppuccin.gtk.icon.enable = true;
-							catppuccin.gtk.icon.accent = "pink";
-							catppuccin.gtk.icon.flavor = "mocha";
-						}
-					];
+					imports = [ ./home.nix ];
 				};
 			}
 		];
