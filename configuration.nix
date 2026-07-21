@@ -150,7 +150,6 @@ environment.systemPackages = with pkgs; [
 	bat # cat alt
 	eza # ls alt
 	fastfetch # backend for hf
-	hyfetch # alias: hf
 	# meh # image viewer
 	ripgrep # use rg
 	catppuccinifier-cli
