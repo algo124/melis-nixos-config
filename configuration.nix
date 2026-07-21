@@ -27,9 +27,10 @@ in
 
 {
 
+# Temp ?
 nixpkgs.config.permittedInsecurePackages = ["electron-39.8.10"];
 
-# Use the systemd-boot EFI boot loader.
+# Boot Loader
 boot.loader = {
 	systemd-boot.enable = true;
 	systemd-boot.configurationLimit = 3;
@@ -37,19 +38,21 @@ boot.loader = {
 	timeout = 10;
 };
 
+# Misc
 system.stateVersion = "25.11"; # Don't touch this. It won't update your system.
-
+services.journald.extraConfig = "SystemMaxUse=100M";
 networking.hostName = "melis";
 networking.networkmanager.enable = true;
-
 programs.xwayland.enable = true;
+programs.fish.enable = true;
+programs.steam.enable = true;
+musnix.enable = true;
+nixpkgs.config.allowUnfree = true; # Allows proprietary packages.
+nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 # Locale
 i18n.defaultLocale = "en_US.UTF-8";
-i18n.extraLocaleSettings = {
-	LC_ALL = "en_US.UTF-8";
-};
-
+i18n.extraLocaleSettings = { LC_ALL = "en_US.UTF-8"; };
 time.timeZone = "America/Los_Angeles";
 
 # Services
@@ -59,6 +62,8 @@ services = {
 	displayManager.sddm.wayland.enable = true;
 };
 
+# Sound
+security.rtkit.enable = true;
 services.pipewire = {
 	enable = true;
 	pulse.enable = true;
@@ -66,6 +71,7 @@ services.pipewire = {
 	jack.enable = true;
 };
 
+# Syncthing
 services.syncthing = {
 	enable = true;
 	openDefaultPorts = true;
@@ -75,8 +81,6 @@ services.syncthing = {
     	configDir = "/home/algo/.config/syncthing";
 };
 
-services.journald.extraConfig = "SystemMaxUse=100M";
-
 # User
 users.users.algo = {
 	isNormalUser = true;
@@ -85,12 +89,6 @@ users.users.algo = {
 	shell = pkgs.fish;
 	useDefaultShell = true;
 };
-
-programs.fish.enable = true;
-programs.steam.enable = true;
-musnix.enable = true;
-nixpkgs.config.allowUnfree = true; # Allows proprietary packages.
-nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
 # Hyprland
 programs.hyprland = {
@@ -199,7 +197,7 @@ environment.systemPackages = with pkgs; [
 	})
 	# Applications
 	vlc
-	alacritty kitty # alacritty preference
+	alacritty # alacritty preference
 	librewolf # Meta+E
 	zoom-us
 	obs-studio

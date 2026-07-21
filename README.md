@@ -5,5 +5,6 @@ My personal config and dotfiles for my desktop, Melis, where I do a variety of p
 - Noctalia
 - flakes
 - Home Manager
+- Hjem
 
 Thanks!
