@@ -1,139 +1,46 @@
-{ pkgs, inputs, ... }: {
-
+# Noctalia V5 setup, called from flake.nix
+{ inputs, ... }: {
 home-manager.users.algo = {
 	imports = [
-		inputs.noctalia.homeModules.default
-	];
+      		inputs.noctalia.homeModules.default
+    	];
 
-	programs.noctalia-shell = {
-		enable = true;
-		settings = {
+	programs.noctalia = {
+      		enable = true;
+      		settings = {
+        		theme = {
+          			mode = "dark";
+          			source = "builtin";
+          			builtin = "Catppuccin";
+        		};
+			wallpaper = {
+				enabled = true;
+				directory = "~/Pictures/Wallpaper";
+			};
+			wallpaper.default = {
+				path = "~/Pictures/Wallpaper/swan.png";
+			};
+			shell = {
+				avatar_path = "~/Pictures/Icons/kaworu.jpg";
+				time_format = "{:%-I:%M %p}";
+				date_format = "{:%A}, {:%Y-%m-%d}";
+			};
+			shell.screenshot = {
+				directory = "~/Pictures/Screenshots";
+				copy_to_clipboard = true;
+			};
 			bar = {
-				density = "default";
-				position = "top";
-				backgroundOpacity = 0.95;
-				marginVertical = 5;
-				marginHorizontal = 5;
-				displayMode = "always_visible";
-				showCapsule = false;
-				frameRadius = 25;
-				fontScale = 1.2;
-				widgets = {
-					left = [{
-						id = "ControlCenter";
-						useDistroLogo = true;
-						enableColorization = true;
-						colorizeDistroLogo = "tertiary";
-						colorizeSystemIcon = "tertiary";
-					} {
-						id = "Launcher";
-					} {
-						id = "Settings";
-					} {
-						id = "NotificationHistory";
-					}];
-					center = [{
-						hideUnoccupied = false;
-						id = "Workspace";
-						labelMode = "none";
-					}];
-					right = [{
-						id = "Volume";
-					} {
-						id = "Network";
-					} {
-						formatHorizontal = "yyyy-MM-dd, HH:mm";
-						formatVertical = "HH mm";
-						id = "Clock";
-						useMonospacedFont = true;
-						usePrimaryColor = true;
-					} {
-						alwaysShowPercentage = true;
-						id = "Battery";
-						warningThreshold = 20;
-					}];
-				};
-			};
-			colorSchemes.predefinedScheme = "Catppuccin";
-			general = {
-				avatarImage = "~/Desktop/Pics/ProfilePics/doggo.jpg";
-				enableShadows = false;
-				showScreenCorners = true;
-				dimmerOpacity = 0;
-				animationSpeed = 1.5;
-				radiusRatio = 1.25;
-				iRadiusRatio = 1.25;
-				boxRadiusRatio = 1.25;
-				enableLockScreenCountdown = true;
-          			lockScreenCountdownDuration = 5000;
-			};
-			ui = {
-				fontDefault = "Noto Sans";
-				fontFixed = "Fira Code";
-				panelBackgroundOpacity = 0.95;
-
+				margin_ends = 0;
+				padding = 10;
+				radius_top_left = 0;
+				radius_top_right = 0;
+				shadow = false;
+				start = ["control-center" "wallpaper" "notifications" "launcher"];
+				center = ["workspaces"];
+				end = ["clipboard" "network" "bluetooth" "volume" "brightness" "session" "battery"];
 			};
 			location = {
-				monthBeforeDay = true;
-				name = "Portland, Oregon";
-				use12hourFormat = true;
-				firstDayOfWeek = 0;
-				useFahrenheit = true;
-			};
-			wallpaper = {
-				enabled = false;
-			};
-			appLauncher = {
-				enableClipboardHistory = true;
-				pinnedApps = [
-					"librewolf"
-					"alacritty"
-					"element-desktop"
-					"vesktop"
-				];
-			};
-			dock = { enabled = false; };
-			desktopWidgets = {
-				enabled = true;
-				overviewEnabled = true;
-				gridSnap = true;
-				grtidSnapScale = true;
-				monitorWidgets = [{
-					name = "HDMI-A-4";
-					widgets = [
-						{
-							id = "Clock";
-							clockColor = "error";
-							clockStyle = "digital";
-							customFont = "";
-							format = "HH:mm\nd MMMM yyyy";
-							roundedCorners = true;
-							useCustomFont = false;
-							scale = 1.8;
-							showBackground = false;
-							x = 0;
-							y = 45;
-						}
-					];
-				}];
-			};
-			controlCenter = {
-				shortcuts = {
-			    		left = [{
-						id = "Network";
-			      		} {
-						id = "NoctaliaPerformance";
-			      		}];
-			    		right = [{
-						id = "Notifications";
-			      		} {
-						id = "PowerProfile";
-					} {
-						id = "KeepAwake";
-			      		} {
-						id = "NightLight";
-					}];
-				};
+				address = "Portland, OR";
 			};
 		};
 	};

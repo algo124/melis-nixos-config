@@ -159,7 +159,7 @@ environment.systemPackages = with pkgs; [
 	playerctl
 	imagemagick
 	wget
-	gcc glibc cmake
+	gcc glibc cmake libsecret
 	python3
 	openssh
 	git gh # git cli
@@ -215,7 +215,7 @@ environment.systemPackages = with pkgs; [
 	foliate
 	filezilla
 	shotwell
-	euphonica
+	euphonica ytmdesktop
 	nicotine-plus
 	nwg-look
 	# Musicking

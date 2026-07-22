@@ -37,9 +37,9 @@ local fileManager = "thunar"
 
 -- See https://wiki.hypr.land/Configuring/Basics/Autostart/
 
-hl.on("hyprland.start", function () 
+hl.on("hyprland.start", function ()
 	hl.exec_cmd("hyprpaper")
-	hl.exec_cmd("noctalia-shell --no-duplicate")
+	hl.exec_cmd("noctalia")
 end)
 
 -------------------------------
@@ -101,11 +101,7 @@ hl.config({
         rounding       = 10,
         rounding_power = 2,
 
-        -- Change transparency of focused and unfocused windows
-        active_opacity   = 1.0,
-        inactive_opacity = 1.0,
-
-        shadow = {
+	shadow = {
             enabled      = true,
             range        = 4,
             render_power = 3,
@@ -115,7 +111,7 @@ hl.config({
         blur = {
             enabled   = true,
             size      = 3,
-            passes    = 1,
+            passes    = 2,
             vibrancy  = 0.1696,
         },
     },
@@ -136,24 +132,6 @@ hl.curve("quick",          { type = "bezier", points = { {0.15, 0},    {0.1, 1} 
 hl.curve("easy",           { type = "spring", mass = 1, stiffness = 71.2633, dampening = 15.8273644 })
 
 hl.animation({ leaf = "global",        enabled = true,  speed = 5,   bezier = "default" })
-
--- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
--- "Smart gaps" / "No gaps when only"
--- uncomment all if you wish to use that.
--- hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
--- hl.workspace_rule({ workspace = "f[1]",   gaps_out = 0, gaps_in = 0 })
--- hl.window_rule({
---     name  = "no-gaps-wtv1",
---     match = { float = false, workspace = "w[tv1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
--- hl.window_rule({
---     name  = "no-gaps-f1",
---     match = { float = false, workspace = "f[1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
@@ -182,8 +160,8 @@ hl.config({
 
 hl.config({
     misc = {
-        force_default_wallpaper = -1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
-        disable_hyprland_logo   = false, -- If true disables the random hyprland logo / anime girl background. :(
+        force_default_wallpaper = 1,    -- Set to 0 or 1 to disable the anime mascot wallpapers
+        disable_hyprland_logo   = true, -- If true disables the random hyprland logo / anime girl background. :(
     },
 })
 
@@ -199,11 +177,8 @@ hl.config({
         kb_model   = "",
         kb_options = "",
         kb_rules   = "",
-
         follow_mouse = 1,
-
         sensitivity = 0, -- -1.0 - 1.0, 0 means no modification.
-
         touchpad = {
             natural_scroll = false,
         },
@@ -229,6 +204,7 @@ hl.device({
 ---------------------
 
 local mainMod = "SUPER"
+local ipc = "noctalia msg "
 
 -- My Binds
 hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd("element-desktop"))
@@ -236,15 +212,15 @@ hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("librewolf"))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("pw-jack reaper"))
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
-hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd("noctalia-shell ipc call launcher toggle"))
+hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(ipc .. "panel-toggle launcher"))
 hl.bind(mainMod .. " + U", hl.dsp.exec_cmd("euphonica"))
--- hl.bind(mainMod .. " + I", hl.dsp.exec_cmd(terminal)) -- UNASSIGNED
+hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("ytmdesktop"))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("obsidian"))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("vesktop"))
+hl.bind("F1", hl.dsp.exec_cmd("hyprshot -m region -o ~/Pictures/Screenshots"))
+hl.bind("ALT + Tab", hl.dsp.exec_cmd(ipc .. "window-switcher"))
 
--- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
 local closeWindowBind = hl.bind(mainMod .. " + K", hl.dsp.window.close())
--- closeWindowBind:set_enabled(false)
 hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
@@ -280,8 +256,6 @@ hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),      { locked = true, repeating = true })
 hl.bind("XF86AudioMute",        hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),     { locked = true, repeating = true })
 hl.bind("XF86AudioMicMute",     hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),   { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
-hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
 
 -- Requires playerctl
 hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
@@ -339,6 +313,14 @@ hl.window_rule({
     float = true,
 })
 
+hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
+hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
+
+hl.window_rule({
+    match = { class = "dev.noctalia.Noctalia" },
+    float = true,
+})
+
 hl.window_rule({
 	match = { class = "thunar" },
 	opacity = "0.9",
@@ -355,6 +337,11 @@ hl.window_rule({
 })
 
 hl.window_rule({
+	match = { class = "youtube-music-desktop-app" },
+	opacity = "0.9",
+})
+
+hl.window_rule({
 	match = { class = "REAPER" },
 	opacity = "0.95",
 })
@@ -363,3 +350,14 @@ hl.window_rule({
 	match = { class = "yabridge-host.exe" },
 	no_max_size = true;
 })
+
+
+-- Workspace Rule
+
+hl.workspace_rule({ workspace = "1", monitor = "", persistent = true })
+hl.workspace_rule({ workspace = "2", monitor = "", persistent = true })
+hl.workspace_rule({ workspace = "3", monitor = "", persistent = true })
+hl.workspace_rule({ workspace = "4", monitor = "", persistent = true })
+hl.workspace_rule({ workspace = "5", monitor = "", persistent = true })
+-- start on workspace 1
+hl.on("hyprland.start", function () hl.dispatch(hl.dsp.focus({ workspace = "1" })) end)

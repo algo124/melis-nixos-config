@@ -16,13 +16,13 @@ inputs = {
 	};
 	hyprland.url = "github:hyprwm/Hyprland";
 	noctalia = {
-      		url = "github:noctalia-dev/noctalia/legacy-v4"; # CHANGE ONCE V5 HITS REPOS
+      		url = "github:noctalia-dev/noctalia";
       		inputs.nixpkgs.follows = "nixpkgs";
     	};
 	musnix = { url = "github:musnix/musnix"; };
 };
 
-outputs = inputs@{ self, nixpkgs, catppuccin, home-manager, ... }: {
+outputs = inputs @ { self, nixpkgs, catppuccin, home-manager, ... }: {
 	nixosConfigurations.melis = nixpkgs.lib.nixosSystem {
 		specialArgs = { inherit inputs; };
 		modules = [
