@@ -1,5 +1,5 @@
 # Noctalia V5 setup, called from flake.nix
-<Right># Noctalia V5 setup for Laika, called from flake.nix
+# Noctalia V5 setup for Laika, called from flake.nix
 { inputs, ... }: {
 home-manager.users.algo = {
 	imports = [

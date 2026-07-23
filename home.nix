@@ -13,7 +13,7 @@ imports = [
 	./dots/fish.nix
 	./dots/git.nix
 	./dots/gtk.nix # possibly remove
-	./dots/hyprland.nix
+	# ./dots/hyprland.nix
 	./dots/librewolf.nix
 	./dots/mpd.nix
 	./dots/mpdscribble.nix
