@@ -1,4 +1,5 @@
 # Noctalia V5 setup, called from flake.nix
+<Right># Noctalia V5 setup for Laika, called from flake.nix
 { inputs, ... }: {
 home-manager.users.algo = {
 	imports = [
@@ -18,10 +19,10 @@ home-manager.users.algo = {
 				directory = "~/Pictures/Wallpaper";
 			};
 			wallpaper.default = {
-				path = "~/Pictures/Wallpaper/swan.png";
+				path = "~/Pictures/Wallpaper/rainbow-guys.png";
 			};
 			shell = {
-				avatar_path = "~/Pictures/Icons/kaworu.jpg";
+				avatar_path = "~/Pictures/Icons/8bitDog.jpg";
 				time_format = "{:%-I:%M %p}";
 				date_format = "{:%A}, {:%Y-%m-%d}";
 			};
@@ -29,18 +30,56 @@ home-manager.users.algo = {
 				directory = "~/Pictures/Screenshots";
 				copy_to_clipboard = true;
 			};
-			bar = {
+			bar.main = {
+				thickness = 30;
+				scale = 1.2;
 				margin_ends = 0;
 				padding = 10;
 				radius_top_left = 0;
 				radius_top_right = 0;
 				shadow = false;
-				start = ["control-center" "wallpaper" "notifications" "launcher"];
-				center = ["workspaces"];
-				end = ["clipboard" "network" "bluetooth" "volume" "brightness" "session" "battery"];
+				start = [
+					"control-center"
+					"notifications"
+					"clipboard"
+					"wallpaper"
+					"launcher"
+				];
+				center = [ "workspaces" ];
+				end = [ 
+					"network"
+					"bluetooth"
+					"volume"
+					"brightness"
+					"battery"
+					"clock"
+					"session"
+				];
 			};
 			location = {
 				address = "Portland, OR";
+			};
+			widget.control-center = {
+				glyph = "star";
+				custom_image = "~/Pictures/Icons/nix-snowflake-white.svg";
+			};
+			widget.launcher = {
+				glyph = "rocket";
+			};
+			widget.clock = {
+				format = "{:%Y-%m-%d}, {:%-I:%M %p}";
+			};
+			widget.volume = {
+				show_label = false;
+			};
+			widget.battery = {
+				show_label = false;
+			};
+			widget.brightness = {
+				show_label = false;
+			};
+			widget.network = {
+				show_label = false;
 			};
 		};
 	};

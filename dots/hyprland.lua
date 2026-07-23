@@ -323,7 +323,7 @@ hl.window_rule({
 
 hl.window_rule({
 	match = { class = "thunar" },
-	opacity = "0.9",
+	opacity = "0.8",
 })
 
 hl.window_rule({
@@ -343,17 +343,22 @@ hl.window_rule({
 
 hl.window_rule({
 	match = { class = "REAPER" },
-	opacity = "0.95",
+	opacity = "0.9",
+})
+
+hl.window_rule({
+	match = { class = "REAPER", title = "Confirmation" },
+	center = true,
 })
 
 hl.window_rule({
 	match = { class = "yabridge-host.exe" },
-	no_max_size = true;
+	opacity = "1",
+	no_max_size = true,
 })
 
 
 -- Workspace Rule
-
 hl.workspace_rule({ workspace = "1", monitor = "", persistent = true })
 hl.workspace_rule({ workspace = "2", monitor = "", persistent = true })
 hl.workspace_rule({ workspace = "3", monitor = "", persistent = true })
