@@ -26,8 +26,8 @@ outputs = inputs @ { self, nixpkgs, catppuccin, home-manager, ... }: {
 	nixosConfigurations.melis = nixpkgs.lib.nixosSystem {
 		specialArgs = { inherit inputs; };
 		modules = [
-			./configuration.nix
-			./hardware-configuration.nix
+			./config.nix
+			./hardware-config.nix
 			./noctalia.nix
 			inputs.hjem.nixosModules.default
 			./hjem.nix

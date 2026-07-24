@@ -212,12 +212,13 @@ hl.bind(mainMod .. " + W", hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd("librewolf"))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("pw-jack reaper"))
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(terminal))
-hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(ipc .. "panel-toggle launcher"))
+hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd(ipc .. "panel-toggle launcher"))
 hl.bind(mainMod .. " + U", hl.dsp.exec_cmd("euphonica"))
 hl.bind(mainMod .. " + I", hl.dsp.exec_cmd("ytmdesktop"))
 hl.bind(mainMod .. " + O", hl.dsp.exec_cmd("obsidian"))
 hl.bind(mainMod .. " + P", hl.dsp.exec_cmd("vesktop"))
-hl.bind("F1", hl.dsp.exec_cmd("hyprshot -m region -o ~/Pictures/Screenshots"))
+hl.bind("F1", hl.dsp.exec_cmd("hyprshot -m window -o ~/Pictures/Screenshots"))
+hl.bind("F2", hl.dsp.exec_cmd("hyprshot -m region -o ~/Pictures/Screenshots"))
 hl.bind("ALT + Tab", hl.dsp.exec_cmd(ipc .. "window-switcher"))
 
 local closeWindowBind = hl.bind(mainMod .. " + K", hl.dsp.window.close())
@@ -239,17 +240,13 @@ for i = 1, 10 do
     hl.bind(mainMod .. " + SHIFT + " .. key,     hl.dsp.window.move({ workspace = i }))
 end
 
--- Example special workspace (scratchpad)
-hl.bind(mainMod .. " + S",         hl.dsp.workspace.toggle_special("magic"))
-hl.bind(mainMod .. " + SHIFT + S", hl.dsp.window.move({ workspace = "special:magic" }))
-
 -- Scroll through existing workspaces with mainMod + scroll
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + mouse_up",   hl.dsp.focus({ workspace = "e-1" }))
 
 -- Move/resize windows with mainMod + LMB/RMB and dragging
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(),   { mouse = true })
-hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true })
+hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true }) -- mod + right click
 
 -- Laptop multimedia keys for volume and LCD brightness
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"), { locked = true, repeating = true })
@@ -316,47 +313,18 @@ hl.window_rule({
 hl.bind("XF86MonBrightnessUp",  hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),                  { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown",hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"),                  { locked = true, repeating = true })
 
-hl.window_rule({
-    match = { class = "dev.noctalia.Noctalia" },
-    float = true,
-})
+hl.window_rule({ match = { class = "dev.noctalia.Noctalia" }, float = true,})
 
-hl.window_rule({
-	match = { class = "thunar" },
-	opacity = "0.8",
-})
+-- Opacity Rules
+hl.window_rule({ match = { class = "thunar" }, opacity = "0.8",})
+hl.window_rule({ match = { class = "vesktop" }, opacity = "0.9",})
+hl.window_rule({match = { class = "element" }, opacity = "0.9",})
+hl.window_rule({match = { class = "youtube-music-desktop-app" }, opacity = "0.9",})
+hl.window_rule({ match = { class = "REAPER" }, opacity = "0.9", })
 
-hl.window_rule({
-	match = { class = "vesktop" },
-	opacity = "0.9",
-})
-
-hl.window_rule({
-	match = { class = "element-desktop" },
-	opacity = "0.9",
-})
-
-hl.window_rule({
-	match = { class = "youtube-music-desktop-app" },
-	opacity = "0.9",
-})
-
-hl.window_rule({
-	match = { class = "REAPER" },
-	opacity = "0.9",
-})
-
-hl.window_rule({
-	match = { class = "REAPER", title = "Confirmation" },
-	center = true,
-})
-
-hl.window_rule({
-	match = { class = "yabridge-host.exe" },
-	opacity = "1",
-	no_max_size = true,
-})
-
+-- Reaper Rules
+hl.window_rule({ match = { class = "REAPER", title = "Confirmation" }, center = true, })
+hl.window_rule({ match = { class = "yabridge-host.exe" }, opacity = "1", no_max_size = true,})
 
 -- Workspace Rule
 hl.workspace_rule({ workspace = "1", monitor = "", persistent = true })

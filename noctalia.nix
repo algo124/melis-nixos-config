@@ -32,7 +32,7 @@ home-manager.users.algo = {
 			};
 			bar.main = {
 				thickness = 30;
-				scale = 1.2;
+				scale = 1;
 				margin_ends = 0;
 				padding = 10;
 				radius_top_left = 0;
@@ -50,7 +50,6 @@ home-manager.users.algo = {
 					"network"
 					"bluetooth"
 					"volume"
-					"brightness"
 					"battery"
 					"clock"
 					"session"
