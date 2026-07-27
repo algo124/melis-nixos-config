@@ -33,7 +33,7 @@ nixpkgs.config.permittedInsecurePackages = ["electron-39.8.10"];
 # Boot Loader
 boot.loader = {
 	systemd-boot.enable = true;
-	systemd-boot.configurationLimit = 3;
+	systemd-boot.configurationLimit = 3; # Does not remove old versions, just doesn't show them. Use clean command.
 	efi.canTouchEfiVariables = true;
 	timeout = 10;
 };
@@ -115,15 +115,25 @@ services = {
 # Thunar to Use Alacritty
 xdg.terminal-exec = {
 	enable = true;
-	settings = {
-		default = [ "alacritty.desktop" ];
-	};
+	settings = { default = [ "alacritty.desktop" ]; };
 };
 
 # Neovim
 programs.neovim = {
 	enable = true;
 	defaultEditor = true;
+	configure = {
+		# Makes nvim transparent and thus defaults to terminal opacity
+		# Then adds line numbers + sets their color
+		customRC = ''
+			highlight Normal guibg=none
+			highlight NonText guibg=none
+			highlight Normal ctermbg=none
+			highlight NonText ctermbg=none
+			set number
+			highlight LineNr guifg=white
+		'';
+	};
 };
 
 # Environment Variables
@@ -146,11 +156,9 @@ fonts.packages = with pkgs; [
 
 environment.systemPackages = with pkgs; [
 	# Frequently Used
-	neovim # alias: v
 	bat # cat alt
 	eza # ls alt
-	fastfetch # backend for hf
-	# meh # image viewer
+	fastfetch
 	ripgrep # use rg
 	catppuccinifier-cli
     	# Basics
@@ -195,21 +203,19 @@ environment.systemPackages = with pkgs; [
 	hyprpolkitagent
 	hyprshot
 	# Theming
-	(pkgs.catppuccin-sddm.override {
-		disableBackground = true;
-	})
+	(pkgs.catppuccin-sddm.override { disableBackground = true; })
 	# Applications
 	vlc
 	nautilus
-	alacritty # alacritty preference
-	librewolf # Meta+E
+	alacritty
+	librewolf
 	zoom-us
 	obs-studio
 	prismlauncher
 	element-desktop
 	fluffychat
-	obsidian # open with command line arg --disable-gpu
-	vesktop # Turn off hardware acceleration
+	obsidian
+	vesktop
 	bitwarden-desktop
 	libreoffice-qt
 	foliate
@@ -217,7 +223,6 @@ environment.systemPackages = with pkgs; [
 	shotwell
 	euphonica ytmdesktop
 	nicotine-plus
-	nwg-look
 	# Musicking
 	reaper-wrapped
 	pwvucontrol

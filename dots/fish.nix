@@ -19,7 +19,7 @@ programs.fish = {
 			body = builtins.readFile ../scripts/sample.fish;
 		};
 		sd = "shutdown now";
-		show-dots = "sudo nvim -p * dots/*";
+		show-dots = "sudo nvim -p * dots/* scripts/*";
 		upgrade = "sudo nix flake update && sudo nixos-rebuild switch";
 	};
 };

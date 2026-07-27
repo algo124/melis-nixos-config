@@ -12,8 +12,7 @@ imports = [
 	./dots/cliphist.nix
 	./dots/fish.nix
 	./dots/git.nix
-	./dots/gtk.nix # possibly remove
-	# ./dots/hyprland.nix
+	./dots/gtk.nix
 	./dots/librewolf.nix
 	./dots/mpd.nix
 	./dots/mpdscribble.nix

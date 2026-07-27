@@ -12,5 +12,4 @@ services.mpdscribble = {
 	};
 };
 
-
 }

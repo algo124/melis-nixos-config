@@ -9,5 +9,6 @@ My personal config and dotfiles for my desktop, Melis, where I do a variety of p
 
 Notes
 - I themed GTK (including Thunar) using Fausto-Korpsvart's Catppuccin-GTK-Theme outside this config.
+- Element must be themed yourself; the config file just turns on the option.
 
 Thanks!

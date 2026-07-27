@@ -15,11 +15,11 @@ inputs = {
 		inputs.nixpkgs.follows = "nixpkgs";
 	};
 	hyprland.url = "github:hyprwm/Hyprland";
+	musnix = { url = "github:musnix/musnix"; };
 	noctalia = {
       		url = "github:noctalia-dev/noctalia";
       		inputs.nixpkgs.follows = "nixpkgs";
     	};
-	musnix = { url = "github:musnix/musnix"; };
 };
 
 outputs = inputs @ { self, nixpkgs, catppuccin, home-manager, ... }: {

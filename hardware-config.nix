@@ -22,8 +22,8 @@ hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
         # Required for modern Intel GPUs (Xe iGPU and ARC)
-        intel-media-driver     # VA-API (iHD) userspace
-        vpl-gpu-rt             # oneVPL (QSV) runtime
+        intel-media-driver # VA-API (iHD) userspace
+        vpl-gpu-rt # oneVPL (QSV) runtime
         vaapi-intel-hybrid
     ];
 };
