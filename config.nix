@@ -166,7 +166,7 @@ environment.systemPackages = with pkgs; [
 	brightnessctl
 	playerctl
 	imagemagick
-	wget
+	wget gnupg
 	gcc glibc cmake libsecret
 	python3
 	openssh
