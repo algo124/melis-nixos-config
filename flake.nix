@@ -28,7 +28,6 @@ outputs = inputs @ { self, nixpkgs, catppuccin, home-manager, ... }: {
 		modules = [
 			./config.nix
 			./hardware-config.nix
-			./noctalia.nix
 			inputs.hjem.nixosModules.default
 			./hjem.nix
 			catppuccin.nixosModules.catppuccin {

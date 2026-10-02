@@ -40,7 +40,7 @@ boot.loader = {
 
 # Misc
 system.stateVersion = "25.11"; # Don't touch this. It won't update your system.
-services.journald.extraConfig = "SystemMaxUse=100M";
+# services.journald.extraConfig = "SystemMaxUse=100M";
 networking.hostName = "melis";
 networking.networkmanager.enable = true;
 programs.xwayland.enable = true;
@@ -161,6 +161,7 @@ environment.systemPackages = with pkgs; [
 	fastfetch
 	ripgrep # use rg
 	catppuccinifier-cli
+	man
     	# Basics
 	nano vim
 	brightnessctl
@@ -171,7 +172,7 @@ environment.systemPackages = with pkgs; [
 	python3
 	openssh
 	git gh # git cli
-	unzip
+	unzip dconf
 	ddcutil ddcui
 	toybox # Unix Command Line Utils
 	ffmpeg
@@ -223,8 +224,10 @@ environment.systemPackages = with pkgs; [
 	shotwell
 	euphonica ytmdesktop
 	nicotine-plus
+	krita
 	# Musicking
 	reaper-wrapped
+	pavucontrol
 	pwvucontrol
 	pipewire.jack
 	wireplumber
@@ -239,7 +242,7 @@ environment.systemPackages = with pkgs; [
 	# Music Plugins
 	decent-sampler
 	surge-xt
-	plugdata
+	# plugdata
 	vital
 	airwindows-lv2
 	chow-tape-model

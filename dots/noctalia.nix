@@ -1,11 +1,5 @@
-# Noctalia V5 setup, called from flake.nix
-# Noctalia V5 setup for Laika, called from flake.nix
-{ inputs, ... }: {
-home-manager.users.algo = {
-	imports = [
-      		inputs.noctalia.homeModules.default
-    	];
-
+# New Noctalia Setup via Home Manager
+{
 	programs.noctalia = {
       		enable = true;
       		settings = {
@@ -82,6 +76,5 @@ home-manager.users.algo = {
 			};
 		};
 	};
-};
 
 }

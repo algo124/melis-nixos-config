@@ -16,6 +16,7 @@ imports = [
 	./dots/librewolf.nix
 	./dots/mpd.nix
 	./dots/mpdscribble.nix
+	./dots/noctalia.nix
 ];
 
 }
