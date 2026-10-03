@@ -4,7 +4,7 @@
 description = "Core NixOS flake for Melis";
 
 inputs = {
-	nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+	nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 	catppuccin.url = "github:catppuccin/nix";
 	hjem = {
       		url = "github:feel-co/hjem";
@@ -43,7 +43,10 @@ outputs = inputs @ { self, nixpkgs, catppuccin, home-manager, ... }: {
 				home-manager.backupFileExtension = "bkp";
 				home-manager.overwriteBackup = true;
 				home-manager.users.algo = {
-					imports = [ ./home.nix ];
+					imports = [
+						inputs.noctalia.homeModules.default
+						./home.nix
+					];
 				};
 			}
 		];
